@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__ . '/../model/User.php';
-require_once __DIR__ . '/../config/bootstrap.php';
+require_once __DIR__ . '/../Model/User.php';
+require_once __DIR__ . '/../../config/bootstrap.php';
+require_once __DIR__ . '/../../config/config.php';
 
 class AuthController{
     private $userModel;
@@ -9,7 +10,7 @@ class AuthController{
         $this->userModel = new User();
     }
 
-    public function login($identifier, $password) {
+    public function login($identifier, $password): bool {
         $user = $this->userModel->findByEmailOrUsername($identifier);
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
@@ -20,7 +21,7 @@ class AuthController{
         return false;
     }
 
-    public function register($nombre, $username, $email, $password) {
+    public function register($nombre, $username, $email, $password): bool {
         if ($this->userModel->findByEmail($email) || $this->userModel->findByUsername($username)) {
             return false; // El email o el nombre de usuario ya están en uso
         }

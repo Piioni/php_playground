@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/../config/Database.php';
+
+require_once __DIR__ . '/Database.php';
 class User {
     private $pdo;
 
@@ -9,8 +10,8 @@ class User {
 
     public function create($name, $username, $email, $password) {
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $this->pdo->prepare("INSERT INTO users (name, username, email, password) VALUES ( ? ? ?)");
-        return $stmt->execute([$name, $email, $passwordHash]);
+        $stmt = $this->pdo->prepare("INSERT INTO users (name, username, email, password) VALUES ( ?, ?, ?, ?)");
+        return $stmt->execute([$name, $email, $username, $passwordHash]);
     }
 
     public function findAll() {
