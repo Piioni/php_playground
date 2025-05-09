@@ -1,11 +1,11 @@
 <?php
-include(__DIR__ . '/../src/config/config.php');
+include(__DIR__ . '/../config/config.php');
 
 $urlMap = [
-    route("/pages/") => 'homepage.php',
-    route("/pages/login") => 'login.php',
-    route('/pages/logout') => 'logout.php',
-    route('/pages/register') => 'register.php',
+    route("/src/pages/") => 'homepage.php',
+    route("/src/pages/login") => 'login.php',
+    route('/src/pages/register') => 'register.php',
+    route('/src/pages/logout') => 'logout.php',
 ];
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? '/';
@@ -18,9 +18,9 @@ if (isset($urlMap[$normalizedPath])) {
     include(__DIR__ . '/../pages/' . $urlMap[$normalizedPath]);
 } elseif ($normalizedPath === '/') {
     // Cargar la página de inicio si la ruta es '/'
-    include(__DIR__ . '/../pages/homepage.php');
+    include(__DIR__ . '/../src/pages/homepage.php');
 } else {
     // Producir una respuesta 404
     header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-    include(__DIR__ . '/../pages/404.php');
+    include(__DIR__ . '/../src/pages/404.php');
 }

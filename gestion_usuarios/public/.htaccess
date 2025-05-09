@@ -1,6 +1,0 @@
-RewriteEngine On
-
-# Reescribir URLs sin extensión .php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ $1.php [L]
