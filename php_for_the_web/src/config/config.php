@@ -1,6 +1,6 @@
 <?php
-const BASE_URL = '/projects/php_for_the_web';
+const BASE_URL = '';
 
 function route($path): string {
-    return BASE_URL . $path;
+    return $path; // Ahora devuelve el path directamente
 }

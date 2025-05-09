@@ -1,29 +1,29 @@
 <?php
-require_once __DIR__ . '/../src/config/config.php';
+    require_once __DIR__ . '/../src/config/config.php';
 
+    // Mapeo de rutas
+    $urlMap = [
+        '/' => '../pages/homepage.php',
+        '/login' => '../pages/login.php',
+        '/logout' => '../pages/logout.php',
+        '/name' => '../pages/name.php',
+        '/pictures' => '../pages/pictures.php',
+        '/random' => '../pages/random.php',
+        '/secret' => '../pages/secret.php',
+        '/create_tour' => '../pages/tours/create_tour.php',
+    ];
 
-$urlMap = [
-    route('/pages/') => 'homepage.php',
-    route("/pages/login") => 'login.php',
-    route('/pages/logout') => 'logout.php',
-    route('/pages/name') => 'name.php',
-    route('/pages/pictures') => 'pictures.php',
-    route('/pages/random') => 'random.php',
-    route('/pages/secret') => 'secret.php',
-    route('/pages/create_tour') => 'tours.php',
+    // Obtener la URI de la solicitud
+    $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-];
+    // Normalizar la URI eliminando la extensión .php si existe
+    $requestUri = preg_replace('/\.php$/', '', $requestUri);
 
-$pathInfo = $_SERVER['PATH_INFO'] ?? '/';
-
-if (isset($urlMap[$pathInfo])) {
-    // Cargar el script de la página específica
-    include(__DIR__ . '/../pages/' . $urlMap[$pathInfo]);
-} elseif ($pathInfo === '/') {
-    // Cargar la página de inicio si la ruta es '/'
-    include(__DIR__ . '/../pages/homepage.php');
-} else {
-    // Producir una respuesta 404
-    header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-    include(__DIR__ . '/../pages/404.php');
-}
+    // Verificar si la ruta existe en el mapeo
+    if (isset($urlMap[$requestUri])) {
+        include($urlMap[$requestUri]);
+    } else {
+        // Manejo de error 404
+        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+        include('../pages/404.php');
+    }
