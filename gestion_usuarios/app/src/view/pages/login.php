@@ -1,8 +1,8 @@
 <?php
-include(__DIR__ . '/../../config/bootstrap.php');
+include(__DIR__ . '/../../../config/bootstrap.php');
 
 $title = 'Login';
-include(__DIR__ . '/../view/layouts/_header.php');
+include(__DIR__ . '/../layouts/_header.php');
 ?>
 
 <h1>Login</h1>
@@ -22,8 +22,8 @@ include(__DIR__ . '/../view/layouts/_header.php');
         </div>
         <button type="submit">Login</button>
     </form>
-    <p> Don't have an account? <a href="register.php">Register here!</a></p>
+    <p> Don't have an account? <a href=<?= route("/register") ?>>>Register here!</a></p>
 </div>
 
 <?php
-include (__DIR__ . '/../view/layouts/_footer.php');
+include(__DIR__ . '/../layouts/_footer.php');

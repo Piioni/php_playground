@@ -7,10 +7,10 @@ class Database
 
     private function __construct()
     {
-        $host = 'localhost';
+        $host = 'mysql';
         $db = 'gestion_usuarios';
         $user = 'root';
-        $pass = '';
+        $pass = 'rootpassword';
         $charset = 'utf8mb4';
 
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

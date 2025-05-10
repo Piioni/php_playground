@@ -17,13 +17,13 @@ $title = "";
 <nav>
     <ul>
         <li>
-            <a href="<?php echo route('/src/pages/homepage.php') ?>">Home</a>
+            <a href="<?php echo route('/homepage') ?>">Home</a>
         </li>
         <li>
-            <a href="<?php echo route('/src/pages/login.php') ?>">Login</a>
+            <a href="<?php echo route('/login') ?>">Login</a>
         </li>
         <li>
-            <a href="<?php echo route('/src/pages/register.php') ?>">Register</a>
+            <a href="<?php echo route('/register') ?>">Register</a>
         </li>
     </ul>
 </nav>
@@ -31,5 +31,5 @@ $title = "";
 
 
 <?php
-include __DIR__ . '/_flash_message.php';
+include __DIR__ . '/../partials/_alerts.php';
 

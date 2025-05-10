@@ -1,6 +1,7 @@
 <?php
-include(__DIR__ . '/../../config/bootstrap.php');
-require_once __DIR__ . '/../controllers/AuthController.php';
+include(__DIR__ . '/../../../config/bootstrap.php');
+require_once __DIR__ . '/../../controllers/AuthController.php';
+require_once __DIR__ . '/../../../config/config.php';
 
 $auth = new AuthController();
 
@@ -11,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if ($auth->register($nombre, $username, $email, $password)) {
-        header('Location: ' . route('/src/pages/login'));
+        header('Location: ' . route("/login") );
         $_SESSION['message'] = 'Usuario registrado correctamente. Por favor, inicia sesión.';
         exit();
     } else {
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $title = 'Register';
-include(__DIR__ . '/../view/layouts/_header.php');
+include(__DIR__ . '/../layouts/_header.php');
 ?>
 
 <h1> Registro de usuarios </h1>
@@ -52,11 +53,11 @@ include(__DIR__ . '/../view/layouts/_header.php');
         </div>
         <button type="submit">Registrar</button>
     </form>
-    <p> ¿Ya tienes cuenta? <a href="login.php">¡Inicia session aquí! </a></p>
+    <p> ¿Ya tienes cuenta? <a href=<?= route("/login") ?> >¡Inicia session aquí! </a></p>
 </div>
 
 <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
 
 <?php
-include(__DIR__ . '/../view/layouts/_footer.php');
+include(__DIR__ . '/../layouts/_footer.php');
