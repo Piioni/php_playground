@@ -1,6 +1,6 @@
 <?php
-include(__DIR__ . '/../../config/bootstrap.php');
-require_once __DIR__ . '/../controllers/AuthController.php';
+include(__DIR__ . '/../../../config/bootstrap.php');
+require_once __DIR__ . '/../../controllers/AuthController.php';
 
 $auth = new AuthController();
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $title = 'Register';
-include(__DIR__ . '/../view/layouts/_header.php');
+include(__DIR__ . '/../layouts/_header.php');
 ?>
 
 <h1> Registro de usuarios </h1>
@@ -59,4 +59,4 @@ include(__DIR__ . '/../view/layouts/_header.php');
 
 
 <?php
-include(__DIR__ . '/../view/layouts/_footer.php');
+include(__DIR__ . '/../layouts/_footer.php');
