@@ -22,7 +22,7 @@ include(__DIR__ . '/../layouts/_header.php');
         </div>
         <button type="submit">Login</button>
     </form>
-    <p> Don't have an account? <a href="register.php">Register here!</a></p>
+    <p> Don't have an account? <a href=<?= route("/register") ?>>>Register here!</a></p>
 </div>
 
 <?php
