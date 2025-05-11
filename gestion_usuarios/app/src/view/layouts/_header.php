@@ -32,7 +32,7 @@ $title = "";
             </li>
             <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo route('admin_dashboard') ?>)">Admin Dashboard</a>
+                    <a class="nav-link" href="<?php echo route('/admin_dashboard') ?>">Admin Dashboard</a>
                 </li>
             <?php endif; ?>
         </ul>

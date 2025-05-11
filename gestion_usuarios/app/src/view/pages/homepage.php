@@ -13,7 +13,12 @@ include(__DIR__ . '/../layouts/_header.php');
                     </div>
                     <div class="card-body text-center">
                         <p>Estás actualmente conectado como
-                            <strong><?= htmlspecialchars($_SESSION['user_name']) ?></strong>.</p>
+                            <?php if (isset($_SESSION['user_role'])): ?>
+                                <strong><?= htmlspecialchars($_SESSION['user_role']) ?></strong>.
+                            <?php else: ?>
+                                <strong>invitado</strong>.
+                            <?php endif; ?>
+                        </p>
                         <a href="<?= route('/logout') ?>" class="btn btn-danger">Cerrar sesión</a>
                     </div>
                 </div>
