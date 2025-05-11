@@ -11,32 +11,32 @@ $title = "";
     <head>
         <meta charset="UTF-8">
         <title><?php echo htmlspecialchars($title, ENT_QUOTES) ?></title>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     </head>
 <body>
-<nav>
-    <ul>
-        <li>
-            <a href="<?php echo route('/homepage') ?>">Home</a>
-        </li>
-        <li>
-            <a href="<?php echo route('/login') ?>">Login</a>
-        </li>
-        <li>
-            <a href="<?php echo route('/register') ?>">Register</a>
-        </li>
-        <li>
-            <a href="<?php echo route('/user_dashboard') ?>">User Dashboard</a>
-        </li>
-        <?php
-        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
-            echo '<li><a href="' . route('/admin_dashboard') . '">Admin Dashboard</a></li>';
-        }
-        ?>
-    </ul>
-</nav>
-
-
+<div>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo route('/homepage') ?>">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo route('/login') ?>">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo route('/register') ?>">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo route('/user_dashboard') ?>">User Dashboard</a>
+            </li>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route('admin_dashboard') ?>)">Admin Dashboard</a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+</div>
 
 <?php
 include __DIR__ . '/../partials/_alerts.php';
