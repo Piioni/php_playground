@@ -25,6 +25,14 @@ $title = "";
         <li>
             <a href="<?php echo route('/register') ?>">Register</a>
         </li>
+        <li>
+            <a href="<?php echo route('/user_dashboard') ?>">User Dashboard</a>
+        </li>
+        <?php
+        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
+            echo '<li><a href="' . route('/admin_dashboard') . '">Admin Dashboard</a></li>';
+        }
+        ?>
     </ul>
 </nav>
 
