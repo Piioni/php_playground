@@ -31,10 +31,10 @@ include(__DIR__ . '/../layouts/_header.php');
                         <h4>Iniciar Sesión</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form method="POST">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Usuario</label>
-                                <input type="text" name="username" id="username" class="form-control" required>
+                                <label for="identifier" class="form-label">Usuario</label>
+                                <input type="text" name="identifier" id="identifier" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>

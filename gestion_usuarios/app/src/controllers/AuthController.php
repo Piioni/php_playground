@@ -33,10 +33,10 @@ class AuthController
         return $this->userModel->create($nombre, $username, $email, $password);
     }
 
-    public function logout()
+    public function logout() : void
     {
         session_destroy();
-        header('Location: ' . route('/pages/login'));
+        header('Location: ' . route('/login'));
         exit();
     }
 
