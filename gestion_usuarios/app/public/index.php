@@ -1,36 +1,33 @@
 <?php
 include(__DIR__ . '/../config/config.php');
+$routeConfig = require __DIR__ . '/../config/routes.php';
 
-function loadView(string $viewPath): void
+function loadView(string $path, $view_dirs): void
 {
-    $fullPath = __DIR__ . '/../src/view/pages/' . $viewPath;
-
-    if (!file_exists($fullPath)) {
-        throw new RuntimeException("View file not found: $viewPath");
+    foreach ($view_dirs as $dir) {
+        $fullPath = $dir . '/' . $path;
+        if (file_exists($fullPath)) {
+            include($fullPath);
+            return;
+        }
     }
-
-    include $fullPath;
+    throw new RuntimeException("View not found: $path");
 }
 
 // Obtener la ruta solicitada y eliminar la parte base de la URL
-
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $pathInfo = str_replace(base_url, '', $requestUri);
 $pathInfo = rtrim($pathInfo, '/') ?: '/';  // Normaliza rutas vacías a '/'
 
 
-$urlMap = [
-    '/' => 'homepage.php',
-    '/homepage' => 'homepage.php',
-    '/login' => 'login.php',
-    '/register' => 'register.php',
-    '/logout' => 'logout.php',
-];
-
-
-if (isset($urlMap[$pathInfo])) {
-    loadView($urlMap[$pathInfo]);
-} else {
-    loadView('404.php');
-    http_response_code(404);
+try {
+    if (isset($routeConfig['routes'][$pathInfo])) {
+        loadView($routeConfig['routes'][$pathInfo], $routeConfig['view_dirs']);
+    } else {
+        http_response_code(404);
+        loadView($routeConfig['routes']['/404'], $routeConfig['view_dirs']);
+    }
+} catch (RuntimeException $e) {
+    http_response_code(500);
+    echo "Error: " . $e->getMessage();
 }
