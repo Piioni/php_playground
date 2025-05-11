@@ -3,7 +3,7 @@ include(__DIR__ . '/../../../config/bootstrap.php');
 
 if (!isset($_SESSION['user_id'])) {
     $message = 'You must be logged in to access this page.';
-    header('Location: ' . route('/pages/login'));
+    header('Location: ' . route('/login'));
     exit();
 }
 
