@@ -4,13 +4,23 @@ include(__DIR__ . '/../../../config/bootstrap.php');
 $title = 'Homepage';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
-
-    <h1>
-        This is the homepage!
-    </h1>
-    <div>
-        You are currently logged in as <?= htmlspecialchars($_SESSION['user_name']) ?>.
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Bienvenido</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <p>Estás actualmente conectado como
+                            <strong><?= htmlspecialchars($_SESSION['user_name']) ?></strong>.</p>
+                        <a href="<?= route('/logout') ?>" class="btn btn-danger">Cerrar sesión</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 <?php
 include(__DIR__ . '/../layouts/_footer.php');

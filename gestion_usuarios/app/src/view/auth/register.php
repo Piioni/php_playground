@@ -24,38 +24,41 @@ $title = 'Register';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
 
-    <h1> Registro de usuarios </h1>
-    <div class="container">
-        <form method="post">
-            <div>
-                <label for="nombre">
-                    Nombre:
-                </label>
-                <input type="text" id="nombre" name="nombre">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Registro</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Nombre de usuario</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirmar contraseña</label>
+                                <input type="password" class="form-control" id="confirm_password"
+                                       name="confirm_password" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Registrarse</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label for="username">
-                    Nombre de usuario:
-                </label>
-                <input type="text" id="username" name="username">
-            </div>
-            <div>
-                <label for="email">
-                    Email:
-                </label>
-                <input type="email" id="email" name="email">
-            </div>
-            <div>
-                <label for="password">
-                    Contraseña:
-                </label>
-                <input type="password" id="password" name="password">
-            </div>
-            <button type="submit">Registrar</button>
-        </form>
-        <p> ¿Ya tienes cuenta? <a href=<?= route("/login") ?>>¡Inicia session aquí! </a></p>
+        </div>
     </div>
-
 <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
 

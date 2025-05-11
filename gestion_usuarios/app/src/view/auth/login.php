@@ -23,24 +23,31 @@ $title = 'Login';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
 
-    <h1>Login</h1>
-    <div>
-        <form method="post">
-            <div>
-                <label for="identifier">
-                    Email or Username:
-                </label>
-                <input type="text" id="identifier" name="identifier">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Iniciar Sesión</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Usuario</label>
+                                <input type="text" name="username" id="username" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" name="password" id="password" class="form-control" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Ingresar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label for="password">
-                    Password:
-                </label>
-                <input type="password" id="password" name="password">
-            </div>
-            <button type="submit">Login</button>
-        </form>
-        <p> Don't have an account? <a href=<?= route("/register") ?>>>Register here!</a></p>
+        </div>
     </div>
 
 <?php
