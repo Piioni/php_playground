@@ -3,7 +3,7 @@
 class Database
 {
     private static $instance = null;
-    private $pdo;
+    private PDO $pdo;
 
     private function __construct()
     {
@@ -28,7 +28,7 @@ class Database
         }
     }
 
-    public static function getInstance()
+    public static function getInstance(): PDO
     {
         if (self::$instance === null) {
             self::$instance = new Database();
