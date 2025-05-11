@@ -2,7 +2,6 @@
 include(__DIR__ . '/../../../config/bootstrap.php');
 
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-    $message = 'You do not have permission to access this page.';
     header('Location: ' . route('/pages/user_dashboard'));
     exit();
 }
@@ -11,9 +10,26 @@ $title = 'Admin Dashboard';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
 
-<h1>Admin Dashboard</h1>
-<div>
-    <h2>Welcome, <?= htmlspecialchars($_SESSION['user_name']) ?>!</h2>
-    <p>You are logged in as an admin.</p>
-    <h3>All Users</h3>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>Panel de Administración</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center">
+                            <div class="card mb-3" style="width: 18rem;">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" >Usuarios</h5>
+                                    <p class="card-text">Gestiona los usuarios de la aplicación.</p>
+                                    <a href="<?php echo route('/admin/users'); ?>" class="btn btn-primary">Ir a
+                                        Usuarios</a>
+                                </div>
+                            </div>
 
+
+
+
+<?php
+include(__DIR__ . '/../layouts/_footer.php');
