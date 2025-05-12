@@ -2,7 +2,7 @@
 include(__DIR__ . '/../../../config/bootstrap.php');
 
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
-    header('Location: ' . route('/pages/user_dashboard'));
+    header('Location: ' . route('/user_dashboard'));
     exit();
 }
 

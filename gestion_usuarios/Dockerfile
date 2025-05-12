@@ -3,6 +3,9 @@ FROM php:8.2-apache
 # Instalar extensiones de PHP
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
+# Instalar Xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 # Habilitar mod_rewrite de Apache
 RUN a2enmod rewrite
 

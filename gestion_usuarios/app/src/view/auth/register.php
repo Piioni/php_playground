@@ -10,6 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
+    $error = '';
+
 
     if ($auth->register($nombre, $username, $email, $password)) {
         $_SESSION['message'] = 'Usuario registrado correctamente. Por favor, inicia sesión.';
@@ -33,6 +36,9 @@ include(__DIR__ . '/../layouts/_header.php');
                     </div>
                     <div class="card-body">
                         <form method="POST">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Nombre de usuario</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
