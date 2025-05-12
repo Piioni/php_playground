@@ -26,8 +26,7 @@ services:
     ports:
       - "${MYSQL_PORT}:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
-
+      - MySql_Volume_Gestion_Usuarios:/var/lib/mysql
     networks:
       - app-network
 
@@ -44,7 +43,8 @@ services:
       - app-network
 
 volumes:
-  mysql-data:
+  #  Se debe crear el volumen para la base de datos sin usar la variable de entorno
+  MySql_Volume_Gestion_Usuarios:
 
 networks:
   app-network:
