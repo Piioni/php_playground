@@ -2,33 +2,34 @@
 include(__DIR__ . '/../../../config/bootstrap.php');
 include(__DIR__ . '/../../controllers/UserController.php');
 
-$userController = new UserController();
+// Establecer título antes de incluir el header
+$title = 'Panel de Usuario';
 
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['message'] = 'Debes iniciar sesión para acceder a esta página.';
     $_SESSION['message_type'] = 'error';
     header('Location: /login');
     exit();
-} else {
-    $userData = $userController->getUserById($_SESSION['user_id']);
-    if (!$userData) {
-        $_SESSION['message'] = 'Usuario no encontrado.';
-        $_SESSION['message_type'] = 'error';
-        header('Location: /login');
-        exit();
-    }
 }
 
-$inputs = [];
+$userController = new UserController();
+$userData = $userController->getUserById($_SESSION['user_id']);
+if (!$userData) {
+    $_SESSION['message'] = 'Usuario no encontrado.';
+    $_SESSION['message_type'] = 'error';
+    header('Location: /login');
+    exit();
+}
+
+$inputs = [
+    'name' => $userData['name'],
+    'username' => $userData['username'],
+    'email' => $userData['email']
+];
 $errors = [];
 
-// Inicializar inputs con los datos actuales del usuario
-$inputs['name'] = $userData['name'];
-$inputs['username'] = $userData['username'];
-$inputs['email'] = $userData['email'];
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Handle form submission
+    // Filtrar y validar entradas
     $inputs['name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
     $inputs['username'] = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
     $inputs['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL) ?? '';
@@ -63,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!password_verify($password, $userData['password'])) {
             $errors['password'] = 'La contraseña actual es incorrecta.';
         } else {
-            // Si se proporciona nueva contraseña, validarla
+            // Sí se proporciona nueva contraseña, validarla
             if (!empty($new_password)) {
                 if (strlen($new_password) < 8) {
                     $errors['new_password'] = 'La nueva contraseña debe tener al menos 8 caracteres.';
@@ -81,30 +82,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Si no hay errores, actualizar el perfil
     if (empty($errors)) {
-        $success = $userController->updateUser($_SESSION['user_id'], $inputs['name'], $inputs['username'], $inputs['email']);
+        try {
+            $success = $userController->updateUser($_SESSION['user_id'], $inputs['name'], $inputs['username'], $inputs['email']);
 
-        if ($updatePassword) {
-            $success = $success && $userController->updateUserPassword($_SESSION['user_id'], $new_password);
-        }
+            if ($updatePassword && $success) {
+                $success = $userController->updateUserPassword($_SESSION['user_id'], $new_password);
+            }
 
-        if ($success) {
-            $_SESSION['message'] = 'Tu perfil ha sido actualizado correctamente.';
-            $_SESSION['message_type'] = 'success';
+            if ($success) {
+                $_SESSION['message'] = 'Tu perfil ha sido actualizado correctamente.';
+                $_SESSION['message_type'] = 'success';
 
-            // Actualizar los datos de sesión
-            $_SESSION['user_name'] = $inputs['username'];
-            $_SESSION['user_email'] = $inputs['email'];
+                // Actualizar los datos de sesión
+                $_SESSION['user_name'] = $inputs['username'];
+                $_SESSION['user_email'] = $inputs['email'];
 
-            // Recargar la página para mostrar datos actualizados
-            header('Location: /user_dashboard');
-            exit();
-        } else {
-            $errors['general'] = 'Error al actualizar el perfil. Es posible que el nombre de usuario o correo ya estén en uso.';
+                // Redireccionar para evitar reenvío del formulario
+                header('Location: /user_dashboard');
+                exit();
+            } else {
+                $errors['general'] = 'Error al actualizar el perfil. Es posible que el nombre de usuario o correo ya estén en uso.';
+            }
+        } catch (Exception $e) {
+            // Registrar el error en un log
+            error_log('Error en actualización de usuario: ' . $e->getMessage());
+            $errors['general'] = 'Ha ocurrido un error al procesar la solicitud.';
         }
     }
 }
 
-$title = 'Panel de Usuario';
+// Incluir la vista después de procesar la lógica
 include(__DIR__ . '/../layouts/_header.php');
 ?>
 
@@ -115,14 +122,12 @@ include(__DIR__ . '/../layouts/_header.php');
 
                 <div class="text-center">
                     <p class="welcome-message">Estás actualmente conectado como
-                        <?php if (isset($_SESSION['user_role'])): ?>
-                            <strong><?= htmlspecialchars($userData['role']) ?></strong>
-                        <?php endif; ?>
+                        <strong><?= htmlspecialchars($userData['role'] ?? 'usuario') ?></strong>
                     </p>
                 </div>
 
                 <?php if (!empty($errors['general'])): ?>
-                    <div class="alert alert-error"><?php echo htmlspecialchars($errors['general']); ?></div>
+                    <div class="alert alert-error"><?= htmlspecialchars($errors['general']) ?></div>
                 <?php endif; ?>
 
                 <?php if (isset($_SESSION['message'])): ?>

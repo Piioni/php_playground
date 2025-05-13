@@ -11,17 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input["identifier"] = filter_input(INPUT_POST, 'identifier', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
     $input['password'] = filter_input(INPUT_POST, 'password') ?? '';
 
-    // Validar cada campo
+    // Validación básica
     if (empty($input["identifier"])) {
-        $errors['identifier'] = 'El nombre de usuario o correo electrónico es obligatorio.';
-    } elseif (strlen($input["identifier"]) < 3) {
-        $errors['identifier'] = 'El nombre de usuario o correo electrónico debe tener al menos 3 caracteres.';
+        $errors['identifier'] = 'El usuario o email es obligatorio.';
     }
 
     if (empty($input['password'])) {
         $errors['password'] = 'La contraseña es obligatoria.';
-    } elseif (strlen($input['password']) < 8) {
-        $errors['password'] = 'La contraseña debe tener al menos 8 caracteres.';
     }
 
     // Si no hay errores, intentar iniciar sesión
@@ -29,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($auth->login($input["identifier"], $input['password'])) {
             $_SESSION['message'] = 'Usuario autenticado correctamente.';
             $_SESSION['message_type'] = 'success';
-            header('Location: /admin_dashboard');
+            header('Location: /user_dashboard');
             exit();
         } else {
             $_SESSION['message'] = 'El usuario o contraseña son incorrectos.';
@@ -42,36 +38,38 @@ $title = 'Login';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
 
-    <div class="auth-container">
-        <div class="card">
-            <div class="card-title">Iniciar Sesión</div>
-            <form method="POST">
-                <div class="form-group">
-                    <label for="identifier">Usuario</label>
-                    <div class="input-wrapper">
-                        <input type="text" name="identifier" id="identifier" class="form-control" required>
-                        <?php if (!empty($errors['identifier'])) : ?>
-                            <div class="error-message">
-                                <?php echo htmlspecialchars($errors['identifier'], ENT_QUOTES); ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+<div class="auth-container">
+    <div class="card">
+        <div class="card-title">Iniciar Sesión</div>
+        <form method="POST">
+            <div class="form-group">
+                <label for="identifier">Usuario</label>
+                <div class="input-wrapper">
+                    <input type="text" name="identifier" id="identifier" class="form-control" required>
+                    <?php if (!empty($errors['identifier'])) : ?>
+                        <div class="error-message">
+                            <?= htmlspecialchars($errors['identifier']) ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <div class="input-wrapper">
-                        <input type="password" name="password" id="password" class="form-control" required>
-                        <?php if (!empty($errors['password'])) : ?>
-                            <div class="error-message">
-                                <?php echo htmlspecialchars($errors['password'], ENT_QUOTES); ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <div class="input-wrapper">
+                    <input type="password" name="password" id="password" class="form-control" required>
+                    <?php if (!empty($errors['password'])) : ?>
+                        <div class="error-message">
+                            <?= htmlspecialchars($errors['password']) ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-                <button type="submit" class="btn btn-block">Ingresar</button>
-            </form>
-        </div>
+            </div>
+            <button type="submit" class="btn btn-block">Ingresar</button>
+            <div class="text-center mt-3">
+                ¿No tienes cuenta? <a href="/register" class="text-link">Regístrate</a>
+            </div>
+        </form>
     </div>
+</div>
 
-<?php
-include(__DIR__ . '/../layouts/_footer.php');
+<?php include(__DIR__ . '/../layouts/_footer.php'); ?>
