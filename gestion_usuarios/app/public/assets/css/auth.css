@@ -168,3 +168,25 @@ button[type="submit"]:active {
     box-shadow: 0 5px 10px rgba(147, 87, 183, 0.4);
 }
 
+/* Estilos para secciones en formularios */
+.section-divider {
+    margin: 25px 0;
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #9357b7, transparent);
+}
+
+.section-title {
+    color: #464b5f;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.section-info {
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}

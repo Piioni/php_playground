@@ -26,10 +26,13 @@ class UserController
         return $this->userModel->update($id, $name, $username, $email);
     }
 
+    public function updateUserPassword($id, $password): bool
+    {
+        return $this->userModel->updatePassword($id, $password);
+    }
+
     public function deleteUser($id): bool
     {
         return $this->userModel->delete($id);
     }
-
-
 }
