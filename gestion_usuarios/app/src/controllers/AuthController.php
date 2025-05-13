@@ -39,15 +39,4 @@ class AuthController
         exit();
     }
 
-    public function isLoggedIn(): bool
-    {
-        return isset($_SESSION['user_id']);
-    }
-
-    public function getAllUsers(): array
-    {
-        return $this->userModel->findAll();
-    }
-
-
 }
