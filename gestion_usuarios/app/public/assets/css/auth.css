@@ -1,0 +1,154 @@
+/* Estilos para formularios de login y registro */
+.auth-container {
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.form-group:hover {
+    transform: translateX(5px);
+}
+
+.form-group label {
+    width: 35%;
+    font-weight: 600;
+    color: #464b5f;
+    text-align: right;
+    padding-right: 15px;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.form-group:hover label {
+    color: #9357b7;
+}
+
+.form-group .input-wrapper {
+    width: 65%;
+    position: relative;
+}
+
+.form-group .input-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #9357b7, #87d3ed);
+    transition: width 0.3s ease;
+}
+
+.form-group:hover .input-wrapper::after {
+    width: 100%;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 2px solid rgba(229, 235, 247, 0.8);
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #464b5f;
+    transition: all 0.3s ease;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #87d3ed;
+    box-shadow: 0 0 15px rgba(135, 211, 237, 0.3);
+    background: white;
+}
+
+.form-control::placeholder {
+    color: #a7adbf;
+}
+
+.form-control:invalid {
+    border-color: rgba(248, 215, 218, 0.7);
+    box-shadow: 0 0 5px rgba(248, 215, 218, 0.5);
+}
+
+.form-control:focus:invalid {
+    border-color: #F8D7DA;
+    box-shadow: 0 0 15px rgba(248, 215, 218, 0.5);
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 0.5rem;
+    color: #9357b7;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    color: #87d3ed;
+    text-decoration: none;
+    transform: translateX(3px);
+}
+
+/* Estilos adicionales para formularios */
+button[type="submit"] {
+    margin-top: 1rem;
+    background: linear-gradient(135deg, #9357b7, #87d3ed);
+    background-size: 200% 100%;
+    border: none;
+    color: white;
+    padding: 0.9rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.5s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(147, 87, 183, 0.3);
+    animation: gradientAnimation 3s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 50px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(30deg);
+    transition: all 0.6s;
+}
+
+button[type="submit"]:hover::before {
+    left: 150%;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(147, 87, 183, 0.4);
+}
+
+button[type="submit"]:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(147, 87, 183, 0.4);
+}

@@ -12,10 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm_password = $_POST['confirm_password'] ?? '';
     $error = '';
 
-
     if ($auth->register($nombre, $username, $email, $password)) {
         $_SESSION['message'] = 'Usuario registrado correctamente. Por favor, inicia sesión.';
-        header('Location: "/login');
+        header('Location: /login');
         exit();
     } else {
         $error = 'El email o el nombre de usuario ya están en uso.';
@@ -26,46 +25,50 @@ $title = 'Register';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h4>Registro</h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre completo</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Nombre de usuario</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="confirm_password" class="form-label">Confirmar contraseña</label>
-                                <input type="password" class="form-control" id="confirm_password"
-                                       name="confirm_password" required>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Registrarse</button>
-                            </div>
-                        </form>
+    <div class="auth-container">
+        <div class="card">
+            <div class="card-title">Registro</div>
+            <?php if (!empty($error)): ?>
+                <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
+            <?php endif; ?>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
                     </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" name="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirmar</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-block">Registrarse</button>
+                <div class="text-center mt-3">
+                    ¿Ya tienes cuenta? <a href="/login" class="text-link">Inicia sesión</a>
+                </div>
+            </form>
         </div>
     </div>
-<?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-
 
 <?php
 include(__DIR__ . '/../layouts/_footer.php');

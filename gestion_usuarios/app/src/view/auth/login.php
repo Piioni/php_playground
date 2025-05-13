@@ -17,35 +17,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-
 $title = 'Login';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <h4>Iniciar Sesión</h4>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="identifier" class="form-label">Usuario</label>
-                                <input type="text" name="identifier" id="identifier" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" name="password" id="password" class="form-control" required>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Ingresar</button>
-                            </div>
-                        </form>
-                    </div>
+    <div class="auth-container">
+        <div class="card">
+            <div class="card-title">Iniciar Sesión</div>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="identifier">Usuario</label>
+                    <input type="text" name="identifier" id="identifier" class="form-control" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-block">Ingresar</button>
+            </form>
         </div>
     </div>
 
