@@ -1,11 +1,5 @@
-/* Importar estilos generales */
-@import url('general.css');
-
-/* Importar estilos de navegación */
-@import url('navbar.css');
-
-/* Importar estilos de tarjetas */
-@import url('cards.css');
-
-/* Importar estilos de autenticación */
-@import url('auth.css');
+/* Archivo principal de estilos */
+@import 'general.css';
+@import 'auth.css';
+@import 'navbar.css';
+@import 'cards.css';

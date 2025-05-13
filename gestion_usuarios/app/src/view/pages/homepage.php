@@ -1,29 +1,34 @@
 <?php
 include(__DIR__ . '/../../../config/bootstrap.php');
 
-$title = 'Homepage';
+$title = 'Inicio - Gestor de Usuarios';
 include(__DIR__ . '/../layouts/_header.php');
 ?>
-    <div class="container">
-        <div class="auth-container">
-            <div class="card">
-                <div class="card-title">
-                    <h4>Bienvenido</h4>
+<div class="auth-container">
+    <div class="card">
+        <h2 class="card-title">Bienvenido</h2>
+        <div class="text-center">
+            <p class="welcome-message">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    Hola, <strong><?= htmlspecialchars($_SESSION['user_name'] ?? 'Usuario') ?></strong>.
+                    Estás conectado como <strong><?= htmlspecialchars($_SESSION['user_role'] ?? 'usuario') ?></strong>.
+                <?php else: ?>
+                    Bienvenido a nuestro sistema de gestión de usuarios.
+                <?php endif; ?>
+            </p>
+            
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <div class="button-group">
+                    <a href="/<?= $_SESSION['user_role'] === 'admin' ? 'admin' : 'user' ?>_dashboard" class="btn">Ir al Panel</a>
                 </div>
-                <div class="text-center">
-                    <p class="welcome-message">Estás actualmente conectado como
-                        <?php if (isset($_SESSION['user_role'])): ?>
-                            <strong><?= htmlspecialchars($_SESSION['user_role']) ?></strong>.
-                        <?php else: ?>
-                            <strong>invitado</strong>.
-                        <?php endif; ?>
-                    </p>
-                    <a href="/logout" class="btn">Cerrar sesión</a>
+            <?php else: ?>
+                <div class="button-group">
+                    <a href="/login" class="btn">Iniciar Sesión</a>
+                    <a href="/register" class="btn">Registrarse</a>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
+</div>
 
-
-<?php
-include(__DIR__ . '/../layouts/_footer.php');
+<?php include(__DIR__ . '/../layouts/_footer.php'); ?>

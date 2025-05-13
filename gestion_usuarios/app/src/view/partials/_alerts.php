@@ -1,25 +1,10 @@
-<?php
-if (isset($_SESSION['message'])) :
-    $alertClass = 'alert-success';
-
-// Sí existe un tipo de mensaje, ajustar la clase correspondiente
-    if (isset($_SESSION['message_type'])) {
-        if ($_SESSION['message_type'] == 'error') {
-            $alertClass = 'alert-error';
-        }
-    }
-    ?>
-
-    <div class="alert <?= $alertClass ?>">
-        <?php
-        echo htmlspecialchars($_SESSION['message'], ENT_QUOTES);
-        ?>
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="alert <?= $_SESSION['message_type'] === 'error' ? 'alert-error' : 'alert-success' ?>">
+        <?= htmlspecialchars($_SESSION['message']) ?>
     </div>
-
     <?php
+    // Limpiar los mensajes después de mostrarlos
     unset($_SESSION['message']);
-    if (isset($_SESSION['message_type'])) {
-        unset($_SESSION['message_type']);
-    }
-
-endif;
+    unset($_SESSION['message_type']);
+    ?>
+<?php endif; ?>
