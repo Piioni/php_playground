@@ -1,7 +1,6 @@
 <?php
 include(__DIR__ . '/../../../config/bootstrap.php');
 require_once __DIR__ . '/../../controllers/AuthController.php';
-require_once __DIR__ . '/../../../config/config.php';
 
 $auth = new AuthController();
 
@@ -11,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($auth->login($identifier, $password)) {
         $_SESSION['message'] = 'Usuario autenticado correctamente.';
-        header('Location: ' . route("/admin_dashboard"));
+        header('Location: /admin_dashboard');
         exit();
     } else {
         $_SESSION['message'] = 'Usuario no autenticado.';

@@ -19,7 +19,7 @@ include(__DIR__ . '/../layouts/_header.php');
                                 <strong>invitado</strong>.
                             <?php endif; ?>
                         </p>
-                        <a href="<?= route('/logout') ?>" class="btn btn-danger">Cerrar sesión</a>
+                        <a href="/logout" class="btn btn-danger">Cerrar sesión</a>
                     </div>
                 </div>
             </div>

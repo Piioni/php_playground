@@ -1,5 +1,4 @@
 <?php
-include(__DIR__ . '/../config/config.php');
 $routeConfig = require __DIR__ . '/../config/routes.php';
 
 function loadView(string $path, $view_dirs): void
@@ -16,8 +15,7 @@ function loadView(string $path, $view_dirs): void
 
 // Obtener la ruta solicitada y eliminar la parte base de la URL
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$pathInfo = str_replace(base_url, '', $requestUri);
-$pathInfo = rtrim($pathInfo, '/') ?: '/';  // Normaliza rutas vacías a '/'
+$pathInfo = rtrim($requestUri, '/') ?: '/';  // Normaliza rutas vacías a '/'
 
 
 try {

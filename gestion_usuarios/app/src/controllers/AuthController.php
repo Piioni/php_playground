@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/../Model/User.php';
 require_once __DIR__ . '/../../config/bootstrap.php';
-require_once __DIR__ . '/../../config/config.php';
 
 class AuthController
 {
@@ -36,7 +35,7 @@ class AuthController
     public function logout() : void
     {
         session_destroy();
-        header('Location: ' . route('/login'));
+        header('Location: /login');
         exit();
     }
 

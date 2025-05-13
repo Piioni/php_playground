@@ -1,7 +1,6 @@
 <?php
 include(__DIR__ . '/../../../config/bootstrap.php');
 require_once __DIR__ . '/../../controllers/AuthController.php';
-require_once __DIR__ . '/../../../config/config.php';
 
 $auth = new AuthController();
 
@@ -16,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($auth->register($nombre, $username, $email, $password)) {
         $_SESSION['message'] = 'Usuario registrado correctamente. Por favor, inicia sesión.';
-        header('Location: ' . route("/login"));
+        header('Location: "/login');
         exit();
     } else {
         $error = 'El email o el nombre de usuario ya están en uso.';

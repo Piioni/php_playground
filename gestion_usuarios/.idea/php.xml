@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="LaravelPint">
-    <laravel_pint_settings>
-      <laravel_pint_by_interpreter asDefaultInterpreter="true" interpreter_id="db76eb00-eb16-487e-98fd-d56a04700845">
-        <option name="timeout" value="30000" />
-      </laravel_pint_by_interpreter>
-    </laravel_pint_settings>
-  </component>
   <component name="MessDetector">
     <phpmd_settings>
-      <phpmd_by_interpreter asDefaultInterpreter="true" interpreter_id="9de59a4e-1af8-488d-aca1-937ac7a75fa7" timeout="30000" />
+      <phpmd_by_interpreter asDefaultInterpreter="true" interpreter_id="e6cec19f-d472-4b97-8e64-dfa74db84d31" timeout="30000" />
     </phpmd_settings>
   </component>
   <component name="MessDetectorOptionsConfiguration">
@@ -22,19 +15,14 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
-  <component name="PhpCSFixer">
-    <phpcsfixer_settings>
-      <phpcs_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="db76eb00-eb16-487e-98fd-d56a04700845" timeout="30000" />
-    </phpcsfixer_settings>
-  </component>
   <component name="PhpCodeSniffer">
     <phpcs_settings>
-      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="9de59a4e-1af8-488d-aca1-937ac7a75fa7" timeout="30000" />
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="e6cec19f-d472-4b97-8e64-dfa74db84d31" timeout="30000" />
     </phpcs_settings>
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter id="9de59a4e-1af8-488d-aca1-937ac7a75fa7" name="gestion_usuarios_apache_php:latest" home="docker://DATA" auto="false" debugger_id="php.debugger.XDebug">
+      <interpreter id="e6cec19f-d472-4b97-8e64-dfa74db84d31" name="gestion_usuarios_apache_php:latest" home="docker://DATA" auto="false" debugger_id="php.debugger.XDebug">
         <remote_data INTERPRETER_PATH="/usr/local/bin/php" HELPERS_PATH="/opt/.phpstorm_helpers" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker" DOCKER_IMAGE_NAME="gestion_usuarios_apache_php:latest" DOCKER_REMOTE_PROJECT_PATH="/opt/project" />
       </interpreter>
     </interpreters>
@@ -95,10 +83,12 @@
       </interpreter>
     </phpInfoCache>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.4">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
   <component name="PhpStan">
     <PhpStan_settings>
-      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="db76eb00-eb16-487e-98fd-d56a04700845" timeout="60000" />
+      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="e6cec19f-d472-4b97-8e64-dfa74db84d31" timeout="60000" />
     </PhpStan_settings>
   </component>
   <component name="PhpStanOptionsConfiguration">
@@ -106,7 +96,7 @@
   </component>
   <component name="Psalm">
     <Psalm_settings>
-      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="db76eb00-eb16-487e-98fd-d56a04700845" timeout="60000" />
+      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="e6cec19f-d472-4b97-8e64-dfa74db84d31" timeout="60000" />
     </Psalm_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
