@@ -44,8 +44,8 @@
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(70, 75, 95, 0.2);
+    transform: translateY(-3px); /* Reducido de -10px a -3px */
+    box-shadow: 0 12px 30px rgba(70, 75, 95, 0.2); /* Ajustado para que coincida con el movimiento más sutil */
 }
 
 .card:hover::before {

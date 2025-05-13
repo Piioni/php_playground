@@ -19,12 +19,20 @@ $title = "";
         <div class="navbar-title">Gestor de Usuarios</div>
         <div class="navbar-links">
             <a href="/homepage">Home</a>
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-            <a href="/user_dashboard">User Dashboard</a>
-            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') : ?>
-                <a href="/admin_dashboard">Admin Dashboard</a>
+            <?php if (isset($_SESSION['user_id'])) : ?>
+
+                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') : ?>
+                    <a href="/admin_dashboard">Admin Dashboard</a>
+                    <a href="/logout">Logout</a>
+                <?php else : ?>
+                    <a href="/user_dashboard">User Dashboard</a>
+                    <a href="/logout">Logout</a>
+                <?php endif; ?>
+            <?php else : ?>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
             <?php endif; ?>
+
         </div>
     </nav>
 </header>
