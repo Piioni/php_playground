@@ -10,10 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($auth->login($identifier, $password)) {
         $_SESSION['message'] = 'Usuario autenticado correctamente.';
+        $_SESSION['message_type'] = 'success';
         header('Location: /admin_dashboard');
         exit();
     } else {
         $_SESSION['message'] = 'Usuario no autenticado.';
+        $_SESSION['message_type'] = 'error';
     }
 }
 
