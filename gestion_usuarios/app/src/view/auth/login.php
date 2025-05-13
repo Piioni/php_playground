@@ -35,8 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['message'] = 'El usuario o contraseña son incorrectos.';
             $_SESSION['message_type'] = 'error';
         }
-    } else {
-        $errors['general'] = 'Todos los campos son obligatorios.';
     }
 }
 
@@ -47,29 +45,28 @@ include(__DIR__ . '/../layouts/_header.php');
     <div class="auth-container">
         <div class="card">
             <div class="card-title">Iniciar Sesión</div>
-            <?php if (!empty($errors)) : ?>
-                <div class="alert alert-error">
-                    <?php echo htmlspecialchars($errors['general'] ?? '', ENT_QUOTES); ?>
-                </div>
-            <?php endif; ?>
             <form method="POST">
                 <div class="form-group">
                     <label for="identifier">Usuario</label>
-                    <input type="text" name="identifier" id="identifier" class="form-control" required>
-                    <?php if (!empty($errors['identifier'])) : ?>
-                        <div class="alert alert-error">
-                            <?php echo htmlspecialchars($errors['identifier'], ENT_QUOTES); ?>
-                        </div>
-                    <?php endif; ?>
+                    <div class="input-wrapper">
+                        <input type="text" name="identifier" id="identifier" class="form-control" required>
+                        <?php if (!empty($errors['identifier'])) : ?>
+                            <div class="error-message">
+                                <?php echo htmlspecialchars($errors['identifier'], ENT_QUOTES); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" name="password" id="password" class="form-control" required>
-                    <?php if (!empty($errors['password'])) : ?>
-                        <div class="alert alert-error">
-                            <?php echo htmlspecialchars($errors['password'], ENT_QUOTES); ?>
-                        </div>
-                    <?php endif; ?>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" id="password" class="form-control" required>
+                        <?php if (!empty($errors['password'])) : ?>
+                            <div class="error-message">
+                                <?php echo htmlspecialchars($errors['password'], ENT_QUOTES); ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-block">Ingresar</button>
             </form>

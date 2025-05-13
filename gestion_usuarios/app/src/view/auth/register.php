@@ -76,7 +76,9 @@ include(__DIR__ . '/../layouts/_header.php');
                                class="form-control <?= !empty($errors['nombre']) ? 'is-invalid' : '' ?>"
                                value="<?= htmlspecialchars($input['nombre'] ?? '') ?>" required>
                         <?php if (!empty($errors['nombre'])): ?>
-                            <div class="error-message"><?= htmlspecialchars($errors['nombre']) ?></div>
+                            <div class="error-message">
+                                <?= htmlspecialchars($errors['nombre']) ?>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
