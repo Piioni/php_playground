@@ -90,10 +90,7 @@ header {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo para el contenedor del footer dentro del site-footer */
-.footer-container {
-    padding: 0.5rem 1rem;
-}
+
 
 /* Responsividad para móviles */
 @media (max-width: 768px) {
