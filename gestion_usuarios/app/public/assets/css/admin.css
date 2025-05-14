@@ -1,0 +1,257 @@
+/* Estilos para el Panel de Administración */
+
+/* Contenedor principal del panel admin */
+.admin-panel {
+    padding: 1rem 0;
+    min-height: 80vh;
+    margin: auto;
+}
+
+/* Encabezado del panel */
+.admin-header {
+    background: linear-gradient(90deg, #464b5f, #6a6f81);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.admin-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-welcome {
+    font-size: 1.1rem;
+    margin-top: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Contenido principal */
+.admin-content {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.admin-section {
+    padding: 1.5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #464b5f;
+    margin: 0;
+}
+
+.section-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+/* Botones específicos de admin */
+.admin-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    background: #464b5f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: none;
+    letter-spacing: normal;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-btn:hover {
+    background: #3a3e4f;
+    transform: translateY(-2px);
+}
+
+/* Tabla de usuarios */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.admin-table thead {
+    background-color: #f8f9fa;
+}
+
+.admin-table th {
+    padding: 1rem;
+    font-weight: 600;
+    color: #464b5f;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.admin-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #e9ecef;
+    color: #666;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.actions-column {
+    width: 180px;
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    text-decoration: none;
+}
+
+.edit-btn {
+    background: #e9ecef;
+    color: #464b5f;
+}
+
+.edit-btn:hover {
+    background: #dee2e6;
+    color: #464b5f;
+}
+
+.delete-btn {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.delete-btn:hover {
+    background: #ffcdd2;
+    color: #d32f2f;
+}
+
+/* Pie de tabla con paginación */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.pagination-info {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.pagination-btn {
+    padding: 0.4rem 0.7rem;
+    border: 1px solid #dee2e6;
+    background: #fff;
+    color: #464b5f;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+}
+
+.pagination-btn:hover:not([disabled]) {
+    background: #e9ecef;
+}
+
+.pagination-btn.active {
+    background: #464b5f;
+    color: #fff;
+    border-color: #464b5f;
+}
+
+.pagination-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .section-actions {
+        width: 100%;
+    }
+
+    .admin-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .pagination {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .pagination-controls {
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

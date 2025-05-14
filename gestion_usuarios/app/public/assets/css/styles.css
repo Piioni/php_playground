@@ -3,3 +3,7 @@
 @import 'auth.css';
 @import 'navbar.css';
 @import 'cards.css';
+@import 'admin.css';
+
+/* Añadir Font Awesome para iconos */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
