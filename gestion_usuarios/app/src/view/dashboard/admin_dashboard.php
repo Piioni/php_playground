@@ -31,42 +31,44 @@ include(__DIR__ . '/../layouts/_header.php');
                     <button class="btn admin-btn"><i class="fas fa-filter"></i> Filtrar</button>
                 </div>
             </div>
-            
+
             <div class="table-responsive">
                 <table class="admin-table">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Usuario</th>
-                            <th>Email</th>
-                            <th class="actions-column">Acciones</th>
-                        </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Email</th>
+                        <th class="actions-column">Acciones</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        // Obtener la lista de usuarios
-                        $userController = new UserController();
-                        $users = $userController->getAllUsers();
-                        foreach ($users as $user) {
+                    <?php
+                    // Obtener la lista de usuarios
+                    $userController = new UserController();
+                    $users = $userController->getAllUsers();
+                    foreach ($users as $user) :
                         ?>
-                            <tr>
-                                <td><?= htmlspecialchars($user['id']) ?></td>
-                                <td><?= htmlspecialchars($user['name']) ?></td>
-                                <td><?= htmlspecialchars($user['username']) ?></td>
-                                <td><?= htmlspecialchars($user['email']) ?></td>
-                                <td class="actions-column">
-                                    <div class="action-buttons">
-                                        <a href="/admin/edit_user.php?id=<?= htmlspecialchars($user['id']) ?>" class="action-btn edit-btn">
-                                            <i class="fas fa-edit"></i> Editar
-                                        </a>
-                                        <a href="/admin/delete_user.php?id=<?= htmlspecialchars($user['id']) ?>" class="action-btn delete-btn">
-                                            <i class="fas fa-trash"></i> Eliminar
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                        <tr>
+                            <td><?= htmlspecialchars($user['id']) ?></td>
+                            <td><?= htmlspecialchars($user['name']) ?></td>
+                            <td><?= htmlspecialchars($user['username']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td class="actions-column">
+                                <div class="action-buttons">
+                                    <a href="/admin/edit_user.php?id=<?= htmlspecialchars($user['id']) ?>"
+                                       class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    <a href="/admin/delete_user.php?id=<?= htmlspecialchars($user['id']) ?>"
+                                       class="action-btn delete-btn">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
