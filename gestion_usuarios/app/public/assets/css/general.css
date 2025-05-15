@@ -120,10 +120,24 @@ a:hover {
 }
 
 /* Mensajes de alerta */
+.alerts-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 1rem 0.25rem;
+    position: relative;
+    margin-top: 0.75rem;
+}
+
 .alert {
     padding: 0.75rem 1.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    width: 100%;
 }
 
 .alert-success {
@@ -136,6 +150,9 @@ a:hover {
     background: rgba(248, 215, 218, 0.5);
     color: #721C24;
     border: 1px solid #F5C6CB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Estilo para el contenedor del footer dentro del site-footer */
@@ -171,3 +188,4 @@ a:hover {
         flex-direction: column; /* En móviles, botones en columna */
     }
 }
+
