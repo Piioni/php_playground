@@ -4,6 +4,7 @@ include(__DIR__ . '/../../controllers/UserController.php');
 
 // Establecer el título antes de incluir el header
 $title = 'Panel de Administración';
+$isAdminPage = true;
 
 // Validación de autorización
 if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
@@ -17,18 +18,18 @@ include(__DIR__ . '/../layouts/_header.php');
 ?>
 
 <div class="admin-panel">
-    <div class="admin-header">
-        <h1 class="admin-title">Panel de Administración</h1>
-        <p class="admin-welcome">Bienvenido, <?= htmlspecialchars($_SESSION['user_name'] ?? 'Administrador') ?>.</p>
-    </div>
-
     <div class="admin-content">
         <div class="admin-section">
+            <div class="welcome-admin">
+                <p>Bienvenido, <?= htmlspecialchars($_SESSION['user_name'] ?? 'Administrador') ?>.</p>
+                <span>Aquí puedes gestionar los usuarios del sistema.</span>
+            </div>
+
             <div class="section-header">
                 <h2 class="section-title">Gestión de Usuarios</h2>
                 <div class="section-actions">
-                    <button class="btn admin-btn"><i class="fas fa-plus"></i> Nuevo Usuario</button>
-                    <button class="btn admin-btn"><i class="fas fa-filter"></i> Filtrar</button>
+                    <button class="admin-btn"><i class="fas fa-plus"></i> Nuevo Usuario</button>
+                    <button class="admin-btn"><i class="fas fa-filter"></i> Filtrar</button>
                 </div>
             </div>
 
@@ -49,6 +50,10 @@ include(__DIR__ . '/../layouts/_header.php');
                     $userController = new UserController();
                     $users = $userController->getAllUsers();
                     foreach ($users as $user) :
+                        // Verificar si el usuario es el administrador
+                        if ($user['role'] === 'admin') {
+                            continue; // No mostrar el administrador en la lista
+                        }
                         ?>
                         <tr>
                             <td><?= htmlspecialchars($user['id']) ?></td>
@@ -61,7 +66,7 @@ include(__DIR__ . '/../layouts/_header.php');
                                        class="action-btn edit-btn">
                                         <i class="fas fa-edit"></i> Editar
                                     </a>
-                                    <a href="/admin/delete_user.php?id=<?= htmlspecialchars($user['id']) ?>"
+                                    <a href="/src/controllers/admin/delete_user.php?id=<?= htmlspecialchars($user['id']) ?>"
                                        class="action-btn delete-btn">
                                         <i class="fas fa-trash"></i> Eliminar
                                     </a>

@@ -6,7 +6,9 @@ $auth = new AuthController();
 $errors = [];
 $input = [];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$request = $_SERVER['REQUEST_METHOD'];
+
+if ($request == 'POST') {
     // Recoger y sanitizar los datos del formulario
     $input["identifier"] = filter_input(INPUT_POST, 'identifier', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
     $input['password'] = filter_input(INPUT_POST, 'password') ?? '';
@@ -20,17 +22,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['password'] = 'La contraseña es obligatoria.';
     }
 
-    // Si no hay errores, intentar iniciar sesión
-    if (empty($errors)) {
-        if ($auth->login($input["identifier"], $input['password'])) {
-            $_SESSION['message'] = 'Usuario autenticado correctamente.';
-            $_SESSION['message_type'] = 'success';
-            header('Location: /user_dashboard');
-            exit();
-        } else {
-            $_SESSION['message'] = 'El usuario o contraseña son incorrectos.';
-            $_SESSION['message_type'] = 'error';
-        }
+    // Sí hay errores, guardarlos en la sesión y redirigir
+    if (!empty($errors)) {
+        $_SESSION['form_errors'] = $errors;
+        $_SESSION['form_input'] = $input;
+        header('Location: /login');
+        exit();
+    }
+
+    // Intentar iniciar sesión
+    if ($auth->login($input["identifier"], $input['password'])) {
+        $_SESSION['message'] = 'Usuario autenticado correctamente.';
+        $_SESSION['message_type'] = 'success';
+        header('Location: /user_dashboard');
+    } else {
+        $_SESSION['message'] = 'El usuario o contraseña son incorrectos.';
+        $_SESSION['message_type'] = 'error';
+        header('Location: /login');
+    }
+    exit();
+
+} elseif ($request == 'GET') {
+    // Si el usuario ya está autenticado, redirigir a la página de inicio
+    if (isset($_SESSION['user'])) {
+        header('Location: /user_dashboard');
+        exit();
+    }
+
+    // Recuperar errores y datos de la sesión si existen
+    if (isset($_SESSION['form_errors'])) {
+        $errors = $_SESSION['form_errors'];
+        unset($_SESSION['form_errors']);
+    }
+
+    if (isset($_SESSION['form_input'])) {
+        $input = $_SESSION['form_input'];
+        unset($_SESSION['form_input']);
     }
 }
 
@@ -45,7 +72,8 @@ include(__DIR__ . '/../layouts/_header.php');
             <div class="form-group">
                 <label for="identifier">Usuario</label>
                 <div class="input-wrapper">
-                    <input type="text" name="identifier" id="identifier" class="form-control" required>
+                    <input type="text" name="identifier" id="identifier" class="form-control"
+                           value="<?= htmlspecialchars($input['identifier'] ?? '') ?>" required>
                     <?php if (!empty($errors['identifier'])) : ?>
                         <div class="error-message">
                             <?= htmlspecialchars($errors['identifier']) ?>

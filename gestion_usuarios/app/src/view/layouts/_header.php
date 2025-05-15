@@ -3,6 +3,14 @@ require_once(__DIR__ . '/../../../config/bootstrap.php');
 
 // Inicializar $title con un valor predeterminado
 $title = $title ?? "Gestor de Usuarios";
+
+// Variable para el título de la barra de navegación
+$navTitle = "Gestor de Usuarios";
+
+// Sí estamos en el panel de administración, cambiar el título
+if (str_contains($_SERVER['REQUEST_URI'], 'admin_dashboard') || isset($isAdminPage)) {
+    $navTitle = "Panel de Administración";
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +23,7 @@ $title = $title ?? "Gestor de Usuarios";
 <body>
 <header>
     <nav class="navbar">
-        <div class="navbar-title">Gestor de Usuarios</div>
+        <div class="navbar-title"><?= htmlspecialchars($navTitle) ?></div>
         <div class="navbar-links">
             <a href="/homepage" class="btn">Home</a>
             <?php if (isset($_SESSION['user_id'])) : ?>
@@ -34,4 +42,3 @@ $title = $title ?? "Gestor de Usuarios";
 </header>
 
 <?php include __DIR__ . '/../partials/_alerts.php'; ?>
-
